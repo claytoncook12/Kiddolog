@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<h1>Kiddo's Journals</h1>
+	{% if kid_list %}
+		<table class="table">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>DOB</th>
+		</tr>
+		</thead>
+		{% for kid in kid_list %}
+		<tbody>
+			<tr>
+				<th><a href="{{ kid.get_absolute_url }}\{% now "Y-m-d" %}">{{ kid.lastName }}, {{ kid.firstName }}</th>
+				<th>{{kid.dob}}</th>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+	{% else %}
+	<p>There are no kids in the journal.</p>
+	{% endif %}
+
+{% endblock %}

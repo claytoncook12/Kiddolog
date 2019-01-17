@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+
+	<h1>KiddoLog</h1>
+
+	<div class="row justify-content-md-center">
+		<div class="col-12 text-center">
+			<img src="{% static 'baby.svg' %}" alt="baby" style="width:200px;height:120px;">
+			<p> View kids journal of daily activity. </p>
+		</div>
+
+		<div class="col-12 text-center">
+			<button class="btn .btn-lg"><a href="{% url 'kids' %}">Kids Daily Journals</a></button>
+		</div>
+	<div>
+{% endblock %}

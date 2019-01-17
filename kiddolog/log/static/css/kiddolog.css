@@ -1,0 +1,18 @@
+h1, h2, h3 {
+  text-align: center;
+}
+
+p {
+	text-align: center;
+}
+
+.errorlist{
+	color: red;
+	list-style-type:none;
+	font-weight: bold;
+	text-align: center;
+}
+
+table {
+	text-align: center;
+}

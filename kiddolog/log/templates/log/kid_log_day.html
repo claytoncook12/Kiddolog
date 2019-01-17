@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<h1>{{kid_name}} Daily Log</h1>
+	<h2>{{ day_of_week }}</h2>
+	<h3>({{date}})</h3>
+
+	<div class="row">
+		<div class="col-2 text-center"><a href="{{ base_url }}/{{previous_day}}">Previous<br>Day</a></div>
+		<div class="col-8"></div>
+		<div class="col-2 text-center"><a href="{{ base_url }}/{{next_day}}">Next<br>Day<a></div>
+	</div>
+
+	<table class="table">
+	<thead>
+		<tr class="row m-0">
+			<th class="d-inline-block col-2">Time</th>
+			<th class="d-inline-block col-2">Activity</th>
+			<th class="d-inline-block col-6">Description</th>
+			<th class="d-inline-block col-1"></th>
+			<th class="d-inline-block col-1"></th>
+		</tr>
+	</thead>
+	{% if kid_log_day %}
+		{% for log in kid_log_day %}
+		<tbody>
+			<tr class="row m-0">
+				<th class="d-inline-block col-2">{{ log.time | date:'g:i a' }}</th>
+				<th class="d-inline-block col-2">{% if log.activity == "t" %}Toilet
+					{% elif log.activity == "r" %}Rest
+					{% elif log.activity == "m" %}Meal
+					{% elif log.activity == "a" %}Activity
+					{% elif log.activity == "o" %}Other
+					{% elif log.activity == "d" %}DropOff
+					{% elif log.activity == "p" %}PickUp
+					{% elif log.activity == "c" %}Check
+					{% elif log.activity == "n" %}Notes To Parents
+					{% endif %}
+				</th>
+				<th class="d-inline-block col-6">{{log.description}}</th>
+				<th class="d-inline-block col-1"><a href="{% url 'edit_log' log.id %}?date={{date}}&kid_id={{pk}}">Edit</a></th>
+				<th class="d-inline-block col-1"><a href="{% url 'delete_log' log.id %}?date={{date}}&kid_id={{pk}}">Delete</a></th>
+			</tr>
+		</tbody>
+		{% endfor %}
+	{% else %}
+	<tbody>
+		<tr>
+			<th colspan="5"><p>No data entered for this day.</p></th>
+		</tr>
+	</tbody>
+	{% endif %}
+
+	</table>
+
+
+	<h3 style="padding-bottom: 10px; padding-top: 10px;">Add New Log For This Day</h3>
+
+	<form action="" method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<p><button type="submit" class="btn .btn-lg">Add Log Item</button></p>
+	</form>
+
+{% endblock %}

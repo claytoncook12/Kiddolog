@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1 style="padding-bottom: 20px; padding-top: 10px;" >Edit Log</h1>
+
+<p style="padding-bottom:20px"><button class="btn .btn-lg"><a href="{{ return_url }}">Return to Journal</a></button></p>
+
+<form action="" method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<p><button type="submit" class="btn .btn-lg">Update</button></p>
+</form>
+
+{% endblock %}

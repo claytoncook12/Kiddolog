@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	{% if kid %}
+
+	<h1>{{kid.firstName}} {{kid.lastName}}</h1>
+
+	<h2>dob: {{kid.dob}}</h2>
+
+	{% else %}
+
+	<p> No record for child found </p>
+
+	{% endif %}
+
+{% endblock %}
